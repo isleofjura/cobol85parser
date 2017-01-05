@@ -742,7 +742,7 @@ reportGroupTypeControlFooting
    ;
 
 reportGroupUsageClause
-   : USAGE IS? (DISPLAY | DISPLAY_1)	
+   : USAGE IS? (DISPLAY | DISPLAY_1)
    ;
 
 reportGroupTypePageFooting
@@ -838,7 +838,7 @@ libraryIsGlobalClause
 // data description entry ----------------------------------
 
 dataDescriptionEntry
-   : dataDescriptionEntryFormat1 | dataDescriptionEntryFormat2 | dataDescriptionEntryFormat3
+   : dataDescriptionEntryFormat1 | dataDescriptionEntryFormat2 | dataDescriptionEntryFormat3 | execSql
    ;
 
 dataDescriptionEntryFormat1
@@ -895,6 +895,11 @@ dataOccursSort
 
 dataPictureClause
    : (PICTURE | PIC) IS? pictureString
+   ;
+
+// Added for DB2
+execSql
+   : EXEC SQL INCLUDE sqlTableName END_EXEC DOT_FS
    ;
 
 pictureString
@@ -2334,6 +2339,11 @@ sectionName
    : cobolWord | integerLiteral
    ;
 
+// Added for DB2
+sqlTableName
+   : IDENTIFIER
+   ;
+
 systemName
    : cobolWord
    ;
@@ -2587,6 +2597,10 @@ END_COMPUTE : E N D MINUSCHAR C O M P U T E;
 END_DELETE : E N D MINUSCHAR D E L E T E;
 END_DIVIDE : E N D MINUSCHAR D I V I D E;
 END_EVALUATE : E N D MINUSCHAR E V A L U A T E;
+
+// DB2
+END_EXEC : END MINUSCHAR EXEC;
+
 END_IF : E N D MINUSCHAR I F;
 END_MULTIPLY : E N D MINUSCHAR M U L T I P L Y;
 END_OF_PAGE : E N D MINUSCHAR O F MINUSCHAR P A G E;
@@ -2615,6 +2629,10 @@ EVENT : E V E N T;
 EVERY : E V E R Y;
 EXCEPTION : E X C E P T I O N;
 EXCLUSIVE : E X C L U S I V E;
+
+// DB2
+EXEC : E X E C;
+
 EXIT : E X I T;
 EXPORT : E X P O R T;
 EXTEND : E X T E N D;
@@ -2653,6 +2671,10 @@ IF : I F;
 IMPLICIT : I M P L I C I T;
 IMPORT : I M P O R T;
 IN : I N;
+
+// Db2
+INCLUDE : I N C L U D E;
+
 INDEX : I N D E X;
 INDEXED : I N D E X E D;
 INDICATE : I N D I C A T E;
@@ -2861,6 +2883,10 @@ SP : S P;
 SPACE : S P A C E;
 SPACES : S P A C E S;
 SPECIAL_NAMES : S P E C I A L MINUSCHAR N A M E S;
+
+// For DB2
+SQL : S Q L;
+
 STANDARD : S T A N D A R D;
 STANDARD_1 : S T A N D A R D MINUSCHAR '1';
 STANDARD_2 : S T A N D A R D MINUSCHAR '2';
