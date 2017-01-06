@@ -509,7 +509,7 @@ dataBaseSectionEntry
 // -- working storage section ----------------------------------
 
 workingStorageSection
-   : WORKING_STORAGE SECTION DOT_FS (dataDescriptionEntry | db2DescriptionEntry*)
+   : WORKING_STORAGE SECTION DOT_FS (dataDescriptionEntry | db2DescriptionEntry)*
    ;
 
 // -- linkage section ----------------------------------

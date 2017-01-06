@@ -253,26 +253,26 @@ public class DataDivisionImpl extends CobolDivisionImpl implements DataDivision 
 	public WorkingStorageSection addWorkingStorageSection(final WorkingStorageSectionContext ctx) {
 		WorkingStorageSection result = (WorkingStorageSection) getASGElement(ctx);
 
-		if (result == null) {
-			result = new WorkingStorageSectionImpl(programUnit, ctx);
-
-			/*
-			 * data descriptions
-			 */
-			DataDescriptionEntryGroup lastDataDescriptionEntryGroup = null;
-
-			for (final DataDescriptionEntryContext dataDescriptionEntryContext : ctx.dataDescriptionEntry()) {
-				final DataDescriptionEntry dataDescriptionEntry = result
-						.createDataDescriptionEntry(lastDataDescriptionEntryGroup, dataDescriptionEntryContext);
-
-				if (dataDescriptionEntry instanceof DataDescriptionEntryGroup) {
-					lastDataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
-				}
-			}
-
-			workingStorageSection = result;
-			registerASGElement(result);
-		}
+//		if (result == null) {
+//			result = new WorkingStorageSectionImpl(programUnit, ctx);
+//
+//			/*
+//			 * data descriptions
+//			 */
+//			DataDescriptionEntryGroup lastDataDescriptionEntryGroup = null;
+//
+//			for (final DataDescriptionEntryContext dataDescriptionEntryContext : ctx.dataDescriptionEntry()) {
+//				final DataDescriptionEntry dataDescriptionEntry = result
+//						.createDataDescriptionEntry(lastDataDescriptionEntryGroup, dataDescriptionEntryContext);
+//
+//				if (dataDescriptionEntry instanceof DataDescriptionEntryGroup) {
+//					lastDataDescriptionEntryGroup = (DataDescriptionEntryGroup) dataDescriptionEntry;
+//				}
+//			}
+//
+//			workingStorageSection = result;
+//			registerASGElement(result);
+//		}
 
 		return result;
 	}
