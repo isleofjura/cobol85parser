@@ -1069,8 +1069,41 @@ sentence
    ;
 
 statement
-   : acceptStatement | addStatement | alterStatement | callStatement | cancelStatement | closeStatement | computeStatement | continueStatement | deleteStatement | disableStatement | displayStatement | divideStatement | enableStatement | entryStatement | evaluateStatement | exitStatement | generateStatement | gobackStatement | goToStatement | ifStatement | initializeStatement | initiateStatement | inspectStatement | mergeStatement | moveStatement | multiplyStatement | openStatement | performStatement | purgeStatement | readStatement | receiveStatement | releaseStatement | returnStatement | rewriteStatement | searchStatement | sendStatement | setStatement | sortStatement | startStatement | stopStatement | stringStatement | subtractStatement | terminateStatement | unstringStatement | writeStatement
+   : db2ProcDivExecSql | acceptStatement | addStatement | alterStatement | callStatement | cancelStatement |
+     closeStatement | computeStatement | continueStatement | deleteStatement | disableStatement |
+     displayStatement | divideStatement | enableStatement | entryStatement | evaluateStatement | exitStatement |
+     generateStatement | gobackStatement | goToStatement | ifStatement | initializeStatement | initiateStatement |
+     inspectStatement | mergeStatement | moveStatement | multiplyStatement | openStatement | performStatement |
+     purgeStatement | readStatement | receiveStatement | releaseStatement | returnStatement | rewriteStatement |
+     searchStatement | sendStatement | setStatement | sortStatement | startStatement | stopStatement |
+     stringStatement | subtractStatement | terminateStatement | unstringStatement | writeStatement
    ;
+
+db2ProcDivExecSql
+   : db2ExecSql db2SqlStatement db2EndExec
+   ;
+
+db2SqlStatement
+   : sqlLiteral
+   ;
+
+
+// TODO Generatlize this over-specific rendition
+sqlLiteral
+    : sqlSelect sqlWhere?
+
+    ;
+
+sqlSelect
+    : SELECT IDENTIFIER IDENTIFIER*
+      'INTO' (COLONCHAR? IDENTIFIER) (COLONCHAR? IDENTIFIER)*
+      'FROM' IDENTIFIER (COMMACHAR IDENTIFIER)*
+    ;
+
+// TODO Generatlize this over-specific rendition
+sqlWhere
+    : 'WHERE' IDENTIFIER EQUALCHAR INTEGERLITERAL
+    ;
 
 // accept statement
 
@@ -2423,6 +2456,7 @@ cicsDfhRespLiteral
 cicsDfhValueLiteral
    : DFHVALUE LPARENCHAR (cobolWord | literal | otherKeyword) RPARENCHAR
    ;
+
 
 // keywords ----------------------------------
 
