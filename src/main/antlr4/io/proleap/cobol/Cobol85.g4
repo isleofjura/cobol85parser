@@ -19,6 +19,11 @@
 *
 * 2. To be used in conjunction with the provided preprocessor, which executes
 *    COPY and REPLACE statements.
+*
+* Forked by Keyhole Software. Adds the following
+* 1. Parse Db2 EXEC SQL constructs in working storage section
+* 2. Parse Db2 EXEC SQL construct in procddure divisions
+* 3. TODO Parse picture repeat counts. E.g 9(5) same as 99999
 */
 
 grammar Cobol85;
