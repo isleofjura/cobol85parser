@@ -1069,14 +1069,14 @@ sentence
    ;
 
 statement
-   : db2ProcDivExecSql | acceptStatement | addStatement | alterStatement | callStatement | cancelStatement |
+   : acceptStatement | addStatement | alterStatement | callStatement | cancelStatement |
      closeStatement | computeStatement | continueStatement | deleteStatement | disableStatement |
      displayStatement | divideStatement | enableStatement | entryStatement | evaluateStatement | exitStatement |
      generateStatement | gobackStatement | goToStatement | ifStatement | initializeStatement | initiateStatement |
      inspectStatement | mergeStatement | moveStatement | multiplyStatement | openStatement | performStatement |
      purgeStatement | readStatement | receiveStatement | releaseStatement | returnStatement | rewriteStatement |
      searchStatement | sendStatement | setStatement | sortStatement | startStatement | stopStatement |
-     stringStatement | subtractStatement | terminateStatement | unstringStatement | writeStatement
+     stringStatement | subtractStatement | terminateStatement | unstringStatement | writeStatement | db2ProcDivExecSql
    ;
 
 db2ProcDivExecSql
@@ -1087,22 +1087,21 @@ db2SqlStatement
    : sqlLiteral
    ;
 
-
-// TODO Generatlize this over-specific rendition
+// Parse it as just a string terminated by db2EndExec .
 sqlLiteral
-    : sqlSelect sqlWhere?
+    : ~(END_EXEC)*?
     ;
 
-sqlSelect
-    : SELECT IDENTIFIER IDENTIFIER*
-      INTO (COLONCHAR? IDENTIFIER) (COLONCHAR? IDENTIFIER)*
-      FROM IDENTIFIER (COMMACHAR IDENTIFIER)*
-    ;
-
-// TODO Generatlize this over-specific rendition
-sqlWhere
-    : 'WHERE' IDENTIFIER EQUALCHAR INTEGERLITERAL
-    ;
+//sqlSelect
+//    : SELECT IDENTIFIER IDENTIFIER*
+//      INTO (COLONCHAR? IDENTIFIER) (COLONCHAR? IDENTIFIER)*
+//      FROM IDENTIFIER (COMMACHAR IDENTIFIER)*
+//    ;
+//
+////  over-specific rendition?
+//sqlWhere
+//    : 'WHERE' IDENTIFIER EQUALCHAR INTEGERLITERAL
+//    ;
 
 // accept statement
 
