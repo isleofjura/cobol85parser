@@ -1091,13 +1091,12 @@ db2SqlStatement
 // TODO Generatlize this over-specific rendition
 sqlLiteral
     : sqlSelect sqlWhere?
-
     ;
 
 sqlSelect
     : SELECT IDENTIFIER IDENTIFIER*
-      'INTO' (COLONCHAR? IDENTIFIER) (COLONCHAR? IDENTIFIER)*
-      'FROM' IDENTIFIER (COMMACHAR IDENTIFIER)*
+      INTO (COLONCHAR? IDENTIFIER) (COLONCHAR? IDENTIFIER)*
+      FROM IDENTIFIER (COMMACHAR IDENTIFIER)*
     ;
 
 // TODO Generatlize this over-specific rendition
